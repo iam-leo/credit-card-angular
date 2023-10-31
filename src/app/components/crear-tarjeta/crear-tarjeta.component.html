@@ -1,12 +1,24 @@
-<div class="w-full bg-white/50 p-6 rounded-lg">
-    <h3 class="text-2xl text-center text-white uppercase font-bold">Crear tarjeta</h3>
-    <form class="flex flex-col justify-center items-center gap-y-3 mt-4">
+<div class="w-full p-6 rounded-lg bg-white/50">
+    <h3 class="text-2xl font-bold text-center text-white uppercase">Crear tarjeta</h3>
+    <form 
+        [formGroup]="form"
+        (ngSubmit)="crearTarjeta()"
+        class="flex flex-col items-center justify-center mt-4 gap-y-3"
+    >
         <!-- Titular -->
         <div class="relative w-full">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="#999999"><circle cx="12" cy="6" r="4"/><path d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5Z"/></g></svg>
             </div>
-            <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 placeholder-gray-400" placeholder="Titular" required>
+            <input
+                formControlName="titular" 
+                type="text"
+                class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg outline-none focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 placeholder-gray-400"
+                [class.border-green-500]="this.form.get('titular')?.valid"
+                [class.border-red-500]="this.form.get('titular')?.invalid && this.form.get('titular')?.touched"
+                placeholder="Titular" 
+                required
+            >
         </div>
 
         <!-- N° Tarjeta -->
@@ -14,17 +26,35 @@
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="#999999" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"/></svg>
             </div>
-            <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 placeholder-gray-400" placeholder="N° de Tarjeta" required>
+            <input 
+                formControlName="numeroTarjeta"
+                type="text"
+                maxlength="16"
+                class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 placeholder-gray-400"
+                [class.border-green-500]="this.form.get('numeroTarjeta')?.valid"
+                [class.border-red-500]="this.form.get('numeroTarjeta')?.invalid && this.form.get('numeroTarjeta')?.touched"
+                placeholder="N° de Tarjeta"
+                required
+            >
         </div>
 
         <!-- Fecha Expiracion y CVV -->
-        <div class="w-full flex gap-x-4">
+        <div class="flex w-full gap-x-4">
             <!-- fecha exp -->
             <div class="relative w-full">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#999999" d="M5 22q-.825 0-1.413-.588T3 20V6q0-.825.588-1.413T5 4h1V3q0-.425.288-.713T7 2q.425 0 .713.288T8 3v1h8V3q0-.425.288-.713T17 2q.425 0 .713.288T18 3v1h1q.825 0 1.413.588T21 6v14q0 .825-.588 1.413T19 22H5Zm0-2h14V10H5v10Zm7-6q-.425 0-.713-.288T11 13q0-.425.288-.713T12 12q.425 0 .713.288T13 13q0 .425-.288.713T12 14Zm-4 0q-.425 0-.713-.288T7 13q0-.425.288-.713T8 12q.425 0 .713.288T9 13q0 .425-.288.713T8 14Zm8 0q-.425 0-.713-.288T15 13q0-.425.288-.713T16 12q.425 0 .713.288T17 13q0 .425-.288.713T16 14Zm-4 4q-.425 0-.713-.288T11 17q0-.425.288-.713T12 16q.425 0 .713.288T13 17q0 .425-.288.713T12 18Zm-4 0q-.425 0-.713-.288T7 17q0-.425.288-.713T8 16q.425 0 .713.288T9 17q0 .425-.288.713T8 18Zm8 0q-.425 0-.713-.288T15 17q0-.425.288-.713T16 16q.425 0 .713.288T17 17q0 .425-.288.713T16 18Z"/></svg>
                 </div>
-                <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 placeholder-gray-400" placeholder="mm/AA" required>
+                <input 
+                    formControlName="fechaExpiracion"
+                    type="text"
+                    maxlength="5"
+                    class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 placeholder-gray-400"
+                    [class.border-green-500]="this.form.get('fechaExpiracion')?.valid"
+                    [class.border-red-500]="this.form.get('fechaExpiracion')?.invalid && this.form.get('fechaExpiracion')?.touched"
+                    placeholder="mm/AA"
+                    required
+                >
             </div>
 
             <!-- cvv -->
@@ -32,12 +62,26 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#999999" d="M22 18v4h-4v-3h-3v-3h-3l-2.26-2.26c-.55.17-1.13.26-1.74.26a6 6 0 0 1-6-6a6 6 0 0 1 6-6a6 6 0 0 1 6 6c0 .61-.09 1.19-.26 1.74L22 18M7 5a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2Z"/></svg>
                 </div>
-                <input type="password" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 placeholder-gray-400" placeholder="CVV" required>
+                <input
+                    formControlName="cvv"
+                    type="password"
+                    maxlength="3"
+                    class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 placeholder-gray-400"
+                    [class.border-green-500]="this.form.get('cvv')?.valid"
+                    [class.border-red-500]="this.form.get('cvv')?.invalid && this.form.get('cvv')?.touched"
+                    placeholder="CVV"
+                    required
+                >
             </div>
         </div>
 
         <!-- Boton aceptar -->
-        <button class="w-full bg-blue-500 rounded-md text-white hover:bg-blue-600 p-3 uppercase font-bold tracking-wider flex justify-center items-center gap-x-2">
+        <button
+            type="submit" 
+            class="flex items-center justify-center w-full p-3 font-bold tracking-wider text-white uppercase bg-blue-500 rounded-md gap-x-2"
+            [class.hover:bg-blue-600]="form.valid"
+            [disabled]="form.invalid"
+        >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24.8" viewBox="0 0 480 496"><path fill="#ffffff" d="M69 5Q42 5 23.5 23.5T5 69v342q0 27 18.5 45.5T69 475h342q27 0 45.5-18.5T475 411V170L357 5H69zm150 43v64h42V48h22v85H133V48h86zm-86 384V304h214v128H133zm299-21q0 9-6 15t-15 6h-22V304q0-17-12.5-30T347 261H133q-17 0-29.5 13T91 304v128H69q-9 0-15-6t-6-15V69q0-9 6-15t15-6h22v85q0 18 12.5 30.5T133 176h150q17 0 29.5-12.5T325 133V48h11l96 134v229z"/></svg>
             Aceptar
         </button>
