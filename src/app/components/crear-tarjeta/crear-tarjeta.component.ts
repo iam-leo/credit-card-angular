@@ -11,6 +11,7 @@ import { TarjetaService } from 'src/app/services/tarjeta.service';
 })
 export class CrearTarjetaComponent {
   form: FormGroup;
+  loading = false;
 
   constructor(private fb: FormBuilder, private _tarjetaService: TarjetaService, private toastr: ToastrService){
     this.form = this.fb.group({
@@ -31,10 +32,19 @@ export class CrearTarjetaComponent {
       fechaActualizacion: new Date(),
     }
 
+    // Acitvamos el spinner
+    this.loading = true;
+
     this._tarjetaService.guardarTarjeta(tarjeta).then(()=>{
       this.toastr.success('La tarjeta fue guardada correctamente', 'Tarjeta registrada');
+
+      // Ocultamos el spinner
+      this.loading = false;
+      
+      // Reseteamos el form
       this.form.reset();      
     }).catch(e => {
+      this.loading = false;
       this.toastr.error('La tarjeta no se guardo', 'Opsss...Error!');
     })
   }
