@@ -1,6 +1,6 @@
-<div class="w-full rounded-lg bg-white/50">
-    <h3 class="text-2xl text-center">Lista tarjetas</h3>
-    <table class="w-full overflow-hidden rounded-md">
+<div class="w-full p-6 rounded-lg bg-white/30">
+    <h3 class="text-2xl font-bold text-center text-white uppercase">Lista tarjetas</h3>
+    <table class="w-full mt-3 overflow-hidden rounded-md">
         <thead class="bg-azul-button h-[50px]">
             <tr>
                 <th class="text-lg font-normal text-white font-farro">Nombre</th>
@@ -12,8 +12,8 @@
             <tr 
                 *ngFor="let tarjeta of listaTarjetas"
             >
-                <td class="py-3 text-center capitalize border-r-[1px] border-white">{{tarjeta.titular}}</td>
-                <td class="py-3 text-center capitalize border-r-[1px] border-white">{{tarjeta.numeroTarjeta}}</td>
+                <td class="py-3 text-center capitalize border-r-[1px] border-white text-slate-50 text-xl">{{tarjeta.titular}}</td>
+                <td class="py-3 text-center capitalize border-r-[1px] border-white text-slate-50 text-xl tracking-wider">{{tarjeta.numeroTarjeta}}</td>
                 <td class="flex justify-center py-3 gap-x-4">
                     <button 
                         class="p-2 bg-green-600 rounded-md"
