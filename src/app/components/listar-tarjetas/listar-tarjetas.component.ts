@@ -38,4 +38,8 @@ export class ListarTarjetasComponent implements OnInit {
       this.toastr.error('La tarjeta no se eliminó', 'Opsss...Error!');
     })
   }
+
+  editarTarjeta(tarjeta: any){
+    this._tarjetaService.agregarTarjetaEditar(tarjeta)
+  }
 }
