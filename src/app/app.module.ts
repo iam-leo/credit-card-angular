@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { CrearTarjetaComponent } from './components/crear-tarjeta/crear-tarjeta.component';
 import { ListarTarjetasComponent } from './components/listar-tarjetas/listar-tarjetas.component';
 import { environment } from 'src/environments/environments';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CrearTarjetaComponent,
     ListarTarjetasComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
