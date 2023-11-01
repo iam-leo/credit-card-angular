@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { TarjetaCredito } from 'src/app/models/TarjetaCredito';
 import { TarjetaService } from 'src/app/services/tarjeta.service';
 
@@ -10,7 +11,7 @@ import { TarjetaService } from 'src/app/services/tarjeta.service';
 export class ListarTarjetasComponent implements OnInit {
   listaTarjetas: TarjetaCredito[] = [];
 
-  constructor( private _tarjetaService: TarjetaService){ }
+  constructor( private _tarjetaService: TarjetaService, private toastr: ToastrService){ }
 
   ngOnInit(): void {
     this.obtenerTarjetas();
@@ -28,5 +29,13 @@ export class ListarTarjetasComponent implements OnInit {
       });
       console.log(this.listaTarjetas);
     });     
+  }
+
+  eliminarTarjeta(id: any){
+    this._tarjetaService.eliminarTarjeta(id).then(()=>{
+      this.toastr.info('La tarjeta fue eliminada correctamente', 'Tarjeta eliminada');
+    }).catch(e => {
+      this.toastr.error('La tarjeta no se eliminó', 'Opsss...Error!');
+    })
   }
 }
