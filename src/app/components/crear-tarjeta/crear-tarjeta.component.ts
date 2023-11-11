@@ -33,7 +33,7 @@ export class CrearTarjetaComponent implements OnInit {
         titular: data.titular,
         numeroTarjeta: data.numeroTarjeta,
         fechaExpiracion: data.fechaExpiracion,
-        cvv: data.cvv        
+        cvv: data.cvv
       })
     })
   }
@@ -45,7 +45,7 @@ export class CrearTarjetaComponent implements OnInit {
     }else{
       // Editar tarjeta
       this.editarTarjeta(this.id);
-    }    
+    }
   }
 
   crearTarjeta(){
@@ -66,9 +66,9 @@ export class CrearTarjetaComponent implements OnInit {
 
       // Ocultamos el spinner
       this.loading = false;
-      
+
       // Reseteamos el form
-      this.form.reset();      
+      this.form.reset();
     }).catch(e => {
       this.loading = false;
       this.toastr.error('La tarjeta no se guardo', 'Opsss...Error!');
@@ -81,15 +81,15 @@ export class CrearTarjetaComponent implements OnInit {
       numeroTarjeta: this.form.value.numeroTarjeta,
       fechaExpiracion: this.form.value.fechaExpiracion,
       cvv: this.form.value.cvv,
-      
+
       fechaActualizacion: new Date(),
     }
-    
+
     this.loading = true;
     this._tarjetaService.editarTarjeta(id, tarjeta).then(()=>{
       // Ocultar spinner
       this.loading = false;
-      
+
       // Resetear titulo
       this.titulo = 'Agregar tarjeta'
 

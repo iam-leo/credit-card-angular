@@ -20,15 +20,14 @@ export class ListarTarjetasComponent implements OnInit {
   obtenerTarjetas(){
     this._tarjetaService.obtenerTarjetas().subscribe( doc => {
       this.listaTarjetas = [];
-      
+
       doc.forEach((element: any) => {
         this.listaTarjetas.push({
           id: element.payload.doc.id,
           ...element.payload.doc.data()
         });
       });
-      console.log(this.listaTarjetas);
-    });     
+    });
   }
 
   eliminarTarjeta(id: any){
